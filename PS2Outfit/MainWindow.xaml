@@ -1,0 +1,33 @@
+﻿<Window x:Class="PS2Outfit.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:outfitVM="clr-namespace:PS2Outfit.ViewModels"
+        Title="Outfit Members" Height="350" Width="525">
+    <Window.DataContext>
+        <outfitVM:OutfitViewModel />
+    </Window.DataContext>
+    <Grid>
+        <DataGrid x:Name="outfitDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" 
+                  ItemsSource="{Binding Outfit}" SelectedItem="{Binding Path=SelectedPlayer, Mode=TwoWay}"
+                  Margin="13,13,13,63" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="outfitHandles" Binding="{Binding Handle}" Header="Handle" Width="*"/>
+                <DataGridTextColumn x:Name="outfitRanks" Binding="{Binding Rank}" Header="Rank" Width="*"/>
+                <DataGridTextColumn x:Name="outfitFavoriteClasses" Binding="{Binding FavoriteClass}" Header="Favorite Class" Width="*"/>
+                <DataGridTextColumn x:Name="outfitFavoriteVehicles" Binding="{Binding FavoriteVehicle}" Header="Favorite Vehicle" Width="*"/>
+                <DataGridTextColumn x:Name="outfitServers" Binding="{Binding Server}" Header="Server" Width="*"/>
+                <DataGridTextColumn x:Name="outfitActives" Binding="{Binding Active}" Header="Active" Width="*"/>
+                <DataGridTextColumn x:Name="outfitJoinDate" Binding="{Binding JoinDate, StringFormat={}{0:MM/dd/yyyy}}" Header="Joined" Width="*"/>                
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Add Player" HorizontalAlignment="Left" Height="24" 
+                Margin="13,277,0,0" VerticalAlignment="Top" Width="111"
+                Command="{Binding AddPlayer}"/>
+        <Button Content="Update Player" HorizontalAlignment="Left" Height="24" 
+                Margin="204,277,0,0" VerticalAlignment="Top" Width="111"
+                Command="{Binding UpdatePlayer}"/>
+        <Button Content="Remove Player" HorizontalAlignment="Left" Height="24" 
+                Margin="393,277,0,0" VerticalAlignment="Top" Width="111"
+                Command="{Binding RemovePlayer}"/>
+    </Grid>
+</Window>
